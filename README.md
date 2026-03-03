@@ -256,3 +256,86 @@ Recuerda subir en producción en el paratado de variables de entorno estas tambi
 
 Recuerda tener la IP abierta: Atlas -> network access -> IP Address 0.0.0.0/0 
  
+---------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------AQUI VA MI README SUPERPROFESIONAL---------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+# Backend Tienda de Ropa
+
+Proyecto backend para una tienda online de ropa con catálogo público y panel de administración completo (CRUD).  
+Desarrollado como práctica para el módulo de backend.
+
+## Tecnologías utilizadas
+
+- **Node.js** + **Express**  
+- **MongoDB Atlas** + **Mongoose**  
+- **dotenv** — variables de entorno  
+- **method-override** — soporte PUT/DELETE desde formularios HTML  
+- **Template literals** (SSR) — renderizado HTML en servidor sin motor externo  
+
+## Requisitos
+
+- Node.js ≥ 18  
+- Cuenta en MongoDB Atlas (cluster ya creado)  
+- Archivo `.env` configurado  
+
+## Puesta en marcha
+
+1. Entra en la carpeta del proyecto:
+   ```bash
+   cd backend-project-break
+
+2. Instala dependencias (solo la primera vez o si cambias package.json)
+   ```bash
+   npm install
+
+3. Verifica que el archivo .env existe y contiene: 
+- PORT=8080
+- MONGO_URI=mongodb+srv://<tu-usuario>:<tu-contraseña>@cluster0.8eceink.mongodb.net/tiendaRopa?retryWrites=true&w=majority
+
+4. Levanta el servidor  
+   ```bash
+   npm run dev
+
+# Endpoints principales
+
+## Catálogo público
+Método,| Ruta,                | Descripción
+GET,   | /,                   | Página de bienvenida
+GET,   | /products,           | Lista de todos los productos (catálogo)
+GET,   | /products/:productId,| Detalle de un producto
+
+## Dashboard administrador (CRUD)
+
+Método,| Ruta,                      | Descripción
+GET,   | /dashboard,                | Lista todos los productos + acciones CRUD
+GET,   | /dashboard/new,            | Formulario para crear nuevo producto
+POST,  | /dashboard,                | Crea producto → redirige a dashboard
+GET,   | /dashboard/:productId,     | Detalle del producto (vista admin)
+GET,   | /dashboard/:productId/edit,| Formulario para editar producto
+PUT,   | /dashboard/:productId,     | Actualiza producto → redirige a dashboard
+DELETE,| /dashboard/:productId,     | Elimina producto → redirige a dashboard
+
+# Estructura del proyecto (resumida)
+
+backend-project-break/
+├── config/             → conexión a MongoDB
+├── helpers/            → baseHtml.js, getNavBar.js, etc.
+├── models/             → Product.js (esquema Mongoose)
+├── routes/             → productRoutes.js, dashboardRoutes.js
+├── .env                → (no subido a Git)
+├── index.js            → servidor principal
+├── package.json
+└── README.md
+
+# Características implementadas
+
+Catálogo público con tarjetas clicables → detalle individual
+Dashboard admin completo (CRUD: crear, leer, actualizar, eliminar)
+Formularios con validación en backend (Mongoose)
+Imágenes con placeholder automático si falla la URL
+Navegación consistente (navbar en todas las páginas)
+Helpers para mantener vistas limpias y reutilizables
+

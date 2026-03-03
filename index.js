@@ -22,8 +22,9 @@ app.get('/', (req, res) => {
 // Conectar a la base de datos
 connectDB();
 
-// Rutas de productos (catálogo público)
+// Rutas
 app.use('/products', require('./routes/productRoutes'));
+app.use('/dashboard', require('./routes/dashboardRoutes'));
 
 // Iniciar servidor
 const PORT = process.env.PORT || 8080;
